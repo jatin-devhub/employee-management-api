@@ -1,7 +1,7 @@
 package com.evolvedigitas.employee_management_api.config;
 
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.Claims;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.KeyGenerator;
@@ -9,6 +9,7 @@ import javax.crypto.SecretKey;
 import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+import java.util.function.Function;
 
 @Component
 public class JwtTokenProvider {
@@ -38,15 +39,33 @@ public class JwtTokenProvider {
     }
 
     public boolean validateToken(String token) {
-        try {
-            Jwts.parser().verifyWith((SecretKey) key).build().parseUnsecuredClaims(token);
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
+        final String username = getUsernameFromToken(token);
+//        HardCoded initially, as user details is not being fetched from DB
+        return (username.equals("admin") && !isTokenExpired(token));
+    }
+
+    public Boolean isTokenExpired(String token) {
+        return extractExpiration(token).before(new Date());
+    }
+
+    public Date extractExpiration(String token) {
+        return extractClaim(token, Claims::getExpiration);
     }
 
     public String getUsernameFromToken(String token) {
-        return Jwts.parser().verifyWith((SecretKey) key).build().parseUnsecuredClaims(token).getPayload().getSubject();
+        return extractClaim(token, Claims::getSubject);
+    }
+
+    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
+        final Claims claims = extractAllClaims(token);
+        return claimsResolver.apply(claims);
+    }
+
+    private Claims extractAllClaims(String token) {
+        return Jwts.parser()
+                .verifyWith(key)
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
     }
 }

@@ -18,11 +18,11 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig {
 
     private final JwtAuthenticationEntryPoint unauthorizedHandler;
-    private final JwtTokenProvider jwtTokenProvider;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-    public SecurityConfig(JwtAuthenticationEntryPoint unauthorizedHandler, JwtTokenProvider jwtTokenProvider) {
+    public SecurityConfig(JwtAuthenticationEntryPoint unauthorizedHandler, JwtAuthenticationFilter jwtAuthenticationFilter) {
         this.unauthorizedHandler = unauthorizedHandler;
-        this.jwtTokenProvider = jwtTokenProvider;
+        this.jwtAuthenticationFilter= jwtAuthenticationFilter;
     }
 
     @Bean
@@ -34,13 +34,8 @@ public class SecurityConfig {
                                 .requestMatchers(new AntPathRequestMatcher("/api/**", "GET")).authenticated()
                                 .anyRequest().authenticated()
                         )
-                        .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
+                        .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
-    }
-
-    @Bean
-    public JwtAuthenticationFilter jwtAuthenticationFilter() {
-        return new JwtAuthenticationFilter(jwtTokenProvider);
     }
 
     @Bean
