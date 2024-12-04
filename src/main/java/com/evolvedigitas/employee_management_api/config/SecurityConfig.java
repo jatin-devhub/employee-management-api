@@ -1,8 +1,9 @@
 package com.evolvedigitas.employee_management_api.config;
 
+import com.evolvedigitas.employee_management_api.config.JWT.JwtAuthenticationEntryPoint;
+import com.evolvedigitas.employee_management_api.config.JWT.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;

@@ -1,4 +1,4 @@
-package com.evolvedigitas.employee_management_api.config;
+package com.evolvedigitas.employee_management_api.config.JWT;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
