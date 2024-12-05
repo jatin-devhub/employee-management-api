@@ -1,9 +1,15 @@
 package com.evolvedigitas.employee_management_api.dto.employee;
 
 import com.evolvedigitas.employee_management_api.model.Employee;
+import lombok.*;
 
 import java.util.List;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class EmployeeDetailsDTO {
 
     private Long id;
