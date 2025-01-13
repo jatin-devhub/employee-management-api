@@ -1,5 +1,6 @@
 package com.evolvedigitas.employee_management_api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,7 +9,6 @@ import lombok.*;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class Document {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,4 +26,9 @@ public class Document {
     @Lob
     @Column(nullable = false)
     private byte[] content;
+
+    @Override
+    public String toString() {
+        return "Document{id=" + this.id + ", title='" + this.name + "'}";
+    }
 }

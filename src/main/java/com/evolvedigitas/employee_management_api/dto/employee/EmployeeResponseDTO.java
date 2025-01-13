@@ -34,7 +34,7 @@ public class EmployeeResponseDTO {
         this.email= employee.getEmail();
         this.phone= employee.getPhone();
         this.skills= employee.getSkills();
-        this.position= employee.getPosition();
+//        this.position= employee.getPosition();
         this.department= employee.getDepartment();
         this.dateJoined= employee.getDateJoined();
 //        this.setWorkExperiences(

@@ -3,8 +3,6 @@ package com.evolvedigitas.employee_management_api.service;
 import com.evolvedigitas.employee_management_api.dto.employee.EmployeeListDTO;
 import com.evolvedigitas.employee_management_api.model.Employee;
 import com.evolvedigitas.employee_management_api.repo.EmployeeRepo;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,6 +24,7 @@ public class EmployeeService {
             Employee res= employeeRepo.save(employee);
             return res.getId();
         } catch (Exception e) {
+            System.out.println("Add EmpService Error, e= "+e.getMessage());
             return null;
         }
     }
