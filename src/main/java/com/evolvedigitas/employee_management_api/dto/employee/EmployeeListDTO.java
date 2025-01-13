@@ -16,7 +16,7 @@ public class EmployeeListDTO {
     private Long id;
     private String name;
     private String workMailId;
-    private String position;
+//    private String position;
     private String department;
     private LocalDate dateJoined;
 
@@ -24,7 +24,7 @@ public class EmployeeListDTO {
         this.id= employee.getId();
         this.name= employee.getName();
         this.workMailId= employee.getEmail();
-        this.position= employee.getPosition();
+//        this.position= employee.getPosition();
         this.department= employee.getDepartment();
         this.dateJoined= employee.getDateJoined();
     }

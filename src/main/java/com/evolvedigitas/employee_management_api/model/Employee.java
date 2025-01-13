@@ -16,7 +16,7 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     private String name, email, phone, designation, department;
     private LocalDate dateJoined;
@@ -31,12 +31,12 @@ public class Employee {
 
     private List<String> achievements;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Document resume;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Document aadhaarCard; // Stores file as binary
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Document panCard; // Stores file as binary
 }

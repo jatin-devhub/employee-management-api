@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -45,7 +44,6 @@ public class AuthController {
         customResponse.put("message","Server Error");
         return new ResponseEntity<>(customResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest) {

@@ -110,6 +110,14 @@ public class EmployeeRequestDTO {
                     education.setSpecialization(educationDTO.getSpecialization());
                     education.setStartYear(educationDTO.getStartYear());
                     education.setEndYear(educationDTO.getEndYear());
+                    if(educationDTO.getEducationDocument()!=null) {
+                        try {
+                            education.setEducationDocument(getDocument(educationDTO.getEducationDocument()));
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                    education.setEmployee(employee);
                     return education;
                 }).toList()
         );
