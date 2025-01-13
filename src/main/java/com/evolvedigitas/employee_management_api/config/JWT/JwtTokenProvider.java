@@ -1,4 +1,4 @@
-package com.evolvedigitas.employee_management_api.config;
+package com.evolvedigitas.employee_management_api.config.JWT;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.Claims;
@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.function.Function;
